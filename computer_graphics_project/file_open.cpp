@@ -4,6 +4,9 @@
 #include<iostream>
 #include"file_open.h"
 
+
+//쉐이더 프로그램 읽는 함수 입니다. 교수님 코드 참조했습니다.
+
 char* file_to_buf(const char* file_name) {
     FILE* file;
     fopen_s(&file, file_name, "r");
@@ -26,6 +29,7 @@ char* file_to_buf(const char* file_name) {
 
 
     //std::cout << shaderSource << std::endl;
+
 
     return shaderSource;
 }
