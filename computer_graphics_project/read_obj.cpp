@@ -4,6 +4,10 @@
 #include<string.h>
 #define MAX_LINE_LENGTH 128
 #include"read_obj.h"
+
+
+//obj파일 읽는 함수 입니다. 교수님 파일 참조했습니다.
+
 void read_newline(char* str) {
     char* pos;
     if ((pos = strchr(str, '\n')) != NULL)
