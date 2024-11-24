@@ -19,13 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Users\c\source\repos\popopocorn\OpenGL_practice15\OpenGL_practice15\file_open.h" />
-    <ClInclude Include="..\..\..\Users\c\source\repos\popopocorn\OpenGL_practice15\OpenGL_practice15\read_obj.h" />
+    <ClInclude Include="aabb.h" />
+    <ClInclude Include="file_open.h" />
     <ClInclude Include="map_tile.h" />
+    <ClInclude Include="read_obj.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Users\c\source\repos\popopocorn\OpenGL_practice15\OpenGL_practice15\file_open.cpp" />
-    <ClCompile Include="..\..\..\Users\c\source\repos\popopocorn\OpenGL_practice15\OpenGL_practice15\read_obj.cpp" />
+    <ClCompile Include="file_open.cpp" />
+    <ClCompile Include="map_tile.cpp" />
+    <ClCompile Include="read_obj.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
