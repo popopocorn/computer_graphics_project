@@ -10,6 +10,22 @@
 #include<string>
 
 
+/*
+	float x;
+	float y;
+	float z;
+
+	Model model;
+
+	aabb box;
+
+	std::string type;
+
+	glm::mat4 trans;
+
+	glm::vec3 color;
+*/
+
 
 
 
@@ -29,5 +45,6 @@ aabb MapTile::get_aabb() {
 
 
 void MapTile::update_position() {
-
+	trans = glm::mat4(1.0f);
+	trans = glm::translate(trans, glm::vec3(x, y, z));
 }
