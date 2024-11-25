@@ -11,6 +11,16 @@
 #include<random>
 #include"map_tile.h"
 
+/*
+테스트용 임시 코드 입니다.
+화면 출력, aabb 값 확인 등 디버그용 출력을 할 코드 입니다. 개선 사항 있으면 적어주세요
+--------------------------------------------------------------------------------------
+
+
+
+*/
+
+
 //미리 선언할거
 #define vertex_shader_code "21_Vertex_shader.glsl"
 #define fragment_shader_code "21_Fragment_shader.glsl"
