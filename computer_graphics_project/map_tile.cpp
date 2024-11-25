@@ -70,7 +70,10 @@ void MapTile::update_position() {
 	trans = glm::mat4(1.0f);
 	trans = glm::translate(trans, glm::vec3(x, y, z));
 }
-
+void MapTile::handle_collision() {
+	//밟으면 떨어지는 함정일시 떨어트리기
+	//코인이면 점수 올려주고 객체 제거
+}
 
 
 aabb make_aabb(const Model m) { // aabb를 만들어 주는 함수, 모델에서 x, y, z각각의 최대, 최소값을 찾아 리턴
