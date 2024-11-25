@@ -7,6 +7,7 @@
 #include"file_open.h"
 #include"read_obj.h"
 #include"map_tile.h"
+#include"aabb.h";
 #include<string>
 
 
@@ -43,6 +44,21 @@ MapTile::MapTile(float in_x, float in_y, float in_z, const char* m, const char* 
 	trans = glm::translate(trans, glm::vec3(x, y, z));
 
 
+}
+void MapTile::gen_buffer() {
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
+
+	glGenBuffers(1, &VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, model.vertex_count * sizeof(Vertex), model.vertices, GL_STATIC_DRAW);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+
+	glGenBuffers(1, &EBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, model.face_count * sizeof(Face), model.faces, GL_STATIC_DRAW);
 }
 
 aabb MapTile::get_aabb() {

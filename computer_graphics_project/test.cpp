@@ -52,7 +52,7 @@ float camera_angle;
 std::random_device(rd);
 std::mt19937 g(rd());
 //MapTile(float, float, float, char *, char*);
-MapTile temp(0.0f, 0.0f, 0.0f,"cube.obj", "floor");
+MapTile temp(0.0f, 0.0f, 0.0f, "cube.obj", "floor");
 
 //------------------------------------------------------
 void main(int argc, char** argv) {
@@ -77,7 +77,10 @@ void main(int argc, char** argv) {
 
     glEnable(GL_DEPTH_TEST);  // 깊이 테스트 활성화
     init_buffer();
-    std::cout << temp.box;
+    temp.gen_buffer();//gen_buffer는 객체 생성시가 아닌 main에서 glewinit()한 이후에 호출하기
+    std::cout << temp.box;//aabb cout test
+    temp.color = glm::vec3(1.0f, 0.0f, 0.0f);
+    
     glutMainLoop();
 
 }
@@ -96,7 +99,7 @@ GLvoid drawScene(GLvoid) {
 
     glm::mat4 proj2 = glm::perspective(glm::radians(45.0f), 1.0f, 0.1f, 50.0f);
     GLuint projection = glGetUniformLocation(shader_program, "projection");
-    proj2 = glm::translate(proj2, glm::vec3(0.0f, -5.0f, -0.0f));
+    proj2 = glm::translate(proj2, glm::vec3(0.0f, 0.0f, 20.0f));
     glUniformMatrix4fv(projection, 1, GL_FALSE, glm::value_ptr(proj2));
 
 
@@ -113,6 +116,11 @@ GLvoid drawScene(GLvoid) {
     GLuint view_mat = glGetUniformLocation(shader_program, "view");
     glUniformMatrix4fv(view_mat, 1, GL_FALSE, glm::value_ptr(view));
 
+    GLuint trans_mat = glGetUniformLocation(shader_program, "trans");
+    GLuint color = glGetUniformLocation(shader_program, "in_color");
+    glUniform3fv(color, 1, glm::value_ptr(temp.color));
+    glUniformMatrix4fv(trans_mat, 1, GL_FALSE, glm::value_ptr(temp.trans));
+    glDrawElements(GL_TRIANGLES, temp.model.face_count * 3, GL_UNSIGNED_INT, 0);
 
     glutSwapBuffers();
 
