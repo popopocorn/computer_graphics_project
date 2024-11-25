@@ -24,7 +24,7 @@ struct MapTile{
 
 	glm::mat4 trans;
 
-	glm::vec3 color;
+	glm::vec3 color; // 색상, 텍스처 등은 이후 gl수업 진도에 따라 로직 추가하겠습니다.
 
 
 

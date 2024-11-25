@@ -38,6 +38,9 @@ MapTile::MapTile(float in_x, float in_y, float in_z, char* m, char* t) {
 	type = t;
 	box = make_aabb(model);
 
+	trans = glm::mat4(1.0f);
+	trans = glm::translate(trans, glm::vec3(x, y, z));
+
 
 }
 
