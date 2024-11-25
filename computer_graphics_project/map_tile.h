@@ -20,7 +20,7 @@ struct MapTile{
 
 	aabb box;
 
-	std::string type; //floor, platform, niddle, niddle과 충돌시 구 하나 감소
+	std::string type; //floor, platform, niddle, coin, niddle과 충돌시 구 하나 감소, coin과 접촉 시엔 스코어 증가
 
 	glm::mat4 trans;
 
@@ -38,6 +38,8 @@ struct MapTile{
 
 	aabb get_aabb(); //aabb박스 얻어오기
 
-	void update_position(); // 위치 변환을 위한 업데이트
+	void update_position(); // 위치 변환을 위한 업데이트, 프레임마다 호출?
 
 };
+
+

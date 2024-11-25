@@ -28,6 +28,7 @@
 */
 
 
+aabb make_aabb(const Model m);
 
 
 MapTile::MapTile(float in_x, float in_y, float in_z, char* m, char* t) {
@@ -53,6 +54,8 @@ void MapTile::update_position() {
 	trans = glm::mat4(1.0f);
 	trans = glm::translate(trans, glm::vec3(x, y, z));
 }
+
+
 
 aabb make_aabb(const Model m) { // aabb를 만들어 주는 함수, 모델에서 x, y, z각각의 최대, 최소값을 찾아 리턴
 	float min_x = std::numeric_limits<float>::max();
