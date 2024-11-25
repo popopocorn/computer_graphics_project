@@ -31,7 +31,7 @@
 aabb make_aabb(const Model m);
 
 
-MapTile::MapTile(float in_x, float in_y, float in_z, char* m, char* t) {
+MapTile::MapTile(float in_x, float in_y, float in_z, const char* m, const char* t) {
 	x = in_x;
 	y = in_y;
 	z = in_z;

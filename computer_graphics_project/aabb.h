@@ -1,4 +1,5 @@
 #pragma once
+#include<iostream>
 
 
 struct aabb
@@ -12,4 +13,5 @@ struct aabb
 	float min_z;
 	float max_z;
 
+	friend std::ostream& operator<<(std::ostream&, const aabb&);
 };

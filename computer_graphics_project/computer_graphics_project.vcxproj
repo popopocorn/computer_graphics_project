@@ -25,9 +25,11 @@
     <ClInclude Include="read_obj.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="aabb.cpp" />
     <ClCompile Include="file_open.cpp" />
     <ClCompile Include="map_tile.cpp" />
     <ClCompile Include="read_obj.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
