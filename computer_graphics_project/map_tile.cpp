@@ -89,13 +89,13 @@ aabb make_aabb(const Model m) { // aabb를 만들어 주는 함수, 모델에서 x, y, z각각
 
 	for (int i = 0; i < m.vertices.size()-1; ++i) {
 		min_x = std::min(min_x, m.vertices[i].x);
-		max_x = std::max(min_x, m.vertices[i].x);
+		max_x = std::max(max_x, m.vertices[i].x);
 
 		min_y = std::min(min_y, m.vertices[i].y);
-		max_y = std::max(min_y, m.vertices[i].y);
+		max_y = std::max(max_y, m.vertices[i].y);
 
 		min_z = std::min(min_z, m.vertices[i].z);
-		max_z = std::max(min_z, m.vertices[i].z);
+		max_z = std::max(max_z, m.vertices[i].z);
 	}
 	aabb temp = {
 		min_x,
