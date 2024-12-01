@@ -62,7 +62,7 @@ float camera_angle;
 std::random_device(rd);
 std::mt19937 g(rd());
 //MapTile(float, float, float, char *, char*);
-MapTile temp(0.0f, 0.0f, 0.0f, "cube.obj", "floor");
+MapTile temp(0.0f, 0.0f, 0.0f, "cube1.obj", "floor");
 
 //------------------------------------------------------
 void main(int argc, char** argv) {
@@ -130,7 +130,7 @@ GLvoid drawScene(GLvoid) {
     GLuint color = glGetUniformLocation(shader_program, "in_color");
     glUniform3fv(color, 1, glm::value_ptr(temp.color));
     glUniformMatrix4fv(trans_mat, 1, GL_FALSE, glm::value_ptr(temp.trans));
-    glDrawElements(GL_TRIANGLES, temp.model.face_count * 3, GL_UNSIGNED_INT, 0);
+    glDrawArrays(GL_TRIANGLES, 0, temp.model.vertices.size());
 
     glutSwapBuffers();
 

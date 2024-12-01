@@ -20,7 +20,7 @@ struct MapTile{
 
 	aabb box;
 
-	GLuint VAO, VBO, EBO;
+	GLuint VAO, VBO, NBO;
 
 	std::string type; //floor, platform, niddle, coin, niddle과 충돌시 구 하나 감소, coin과 접촉 시엔 스코어 증가
 

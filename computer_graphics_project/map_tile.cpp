@@ -51,14 +51,17 @@ void MapTile::gen_buffer() {
 
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, model.vertex_count * sizeof(Vertex), model.vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, model.vertices.size() * sizeof(Vertex), model.vertices.data(), GL_STATIC_DRAW);
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
-	glGenBuffers(1, &EBO);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, model.face_count * sizeof(Face), model.faces, GL_STATIC_DRAW);
+	glGenBuffers(1, &NBO);
+	glBindBuffer(GL_ARRAY_BUFFER, NBO);
+	glBufferData(GL_ARRAY_BUFFER, model.nvectors.size() * sizeof(Normal), model.nvectors.data(), GL_STATIC_DRAW);
+
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(1);
 }
 
 aabb MapTile::get_aabb() {
@@ -84,7 +87,7 @@ aabb make_aabb(const Model m) { // aabb를 만들어 주는 함수, 모델에서 x, y, z각각
 	float min_z = std::numeric_limits<float>::max();
 	float max_z = std::numeric_limits<float>::min();
 
-	for (int i = 0; i < m.vertex_count; ++i) {
+	for (int i = 0; i < m.vertices.size()-1; ++i) {
 		min_x = std::min(min_x, m.vertices[i].x);
 		max_x = std::max(min_x, m.vertices[i].x);
 
