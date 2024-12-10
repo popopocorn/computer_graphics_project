@@ -62,8 +62,10 @@ float camera_angle;
 std::random_device(rd);
 std::mt19937 g(rd());
 //MapTile(float, float, float, char *, char*);
-MapTile temp(0.0f, 0.0f, 0.0f, "cube1.obj", "floor");
 
+MapTile map1[] = {
+    MapTile(0.0f, 0.0f, 0.0f, "cube1.obj", "floor"),
+};
 //------------------------------------------------------
 void main(int argc, char** argv) {
     glutInit(&argc, argv);
@@ -87,9 +89,12 @@ void main(int argc, char** argv) {
 
     glEnable(GL_DEPTH_TEST);  // 깊이 테스트 활성화
     init_buffer();
-    temp.gen_buffer();//gen_buffer는 객체 생성시가 아닌 main에서 glewinit()한 이후에 호출하기
-    std::cout << temp.box;//aabb cout test
-    temp.color = glm::vec3(1.0f, 0.0f, 0.0f);
+    for (MapTile& map : map1) {
+        map.gen_buffer();
+        map.color = glm::vec3(0.0, 1.0, 0.0);
+    }
+    
+    
     
     glutMainLoop();
 
@@ -128,9 +133,13 @@ GLvoid drawScene(GLvoid) {
 
     GLuint trans_mat = glGetUniformLocation(shader_program, "trans");
     GLuint color = glGetUniformLocation(shader_program, "in_color");
-    glUniform3fv(color, 1, glm::value_ptr(temp.color));
-    glUniformMatrix4fv(trans_mat, 1, GL_FALSE, glm::value_ptr(temp.trans));
-    glDrawArrays(GL_TRIANGLES, 0, temp.model.vertices.size());
+    
+    for(MapTile w : map1){
+        glBindVertexArray(w.VAO);
+        glUniform3fv(color, 1, glm::value_ptr(w.color));
+        glUniformMatrix4fv(trans_mat, 1, GL_FALSE, glm::value_ptr(w.trans));
+        glDrawArrays(GL_TRIANGLES, 0, w.model.vertices.size());
+    }
 
     glutSwapBuffers();
 
@@ -144,11 +153,11 @@ GLvoid Reshape(int w, int h) {
 GLvoid Keyboard(unsigned char key, int x, int y) {
     switch (key) {
   
-    case 'z':
+    case 'w':
         camera_z += 0.5f;
         break;
 
-    case 'Z':
+    case 's':
         camera_z -= 0.5f;
         break;
 
@@ -160,13 +169,22 @@ GLvoid Keyboard(unsigned char key, int x, int y) {
         camera_angle -= 1.0;
         break;
 
-    case 'x':
+    case 'a':
         camera_x += 0.5f;
         break;
 
-    case 'X':
+    case 'd':
         camera_x -= 0.5f;
         break;
+
+    case ' ':
+        camera_y -= 0.5f;
+        break;
+
+    case 'c':
+        camera_y += 0.5f;
+        break;
+
     case 'q':
         glutLeaveMainLoop();
         break;
