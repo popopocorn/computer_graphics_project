@@ -31,6 +31,10 @@
     <ClCompile Include="read_obj.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="21_Fragment_shader.glsl" />
+    <None Include="21_Vertex_shader.glsl" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
