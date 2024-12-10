@@ -11,6 +11,16 @@
 #include<random>
 #include"map_tile.h"
 
+
+#define green_color glm::vec3(0.0f, 1.0f, 0.0f)
+#define blue_color glm::vec3(0.0f, 0.0f, 1.0f)
+#define sky_color glm::vec3(0.0f, 0.5f, 1.0f)
+#define purple_color glm::vec3(1.0f, 0.0f, 1.0f)
+#define brown_color glm::vec3(0.5f, 0.3f, 0.0f)
+#define gray_color glm::vec3(0.5f, 0.5f, 0.5f)
+#define white_color glm::vec3(1.0f, 1.0f, 1.0f)
+#define red_color glm::vec3(1.0f, 0.0f, 0.0f)
+#define yellow_color glm::vec3(1.0f, 1.0f, 0.0f)
 /*
 테스트용 임시 코드 입니다.
 화면 출력, aabb 값 확인 등 디버그용 출력을 할 코드 입니다. 개선 사항 있으면 적어주세요
@@ -64,7 +74,7 @@ std::mt19937 g(rd());
 //MapTile(float, float, float, char *, char*);
 
 MapTile map1[] = {
-    MapTile(0.0f, 0.0f, 0.0f, "cube1.obj", "floor"),
+    MapTile(0.0f, 0.0f, 0.0f, "cube1.obj", "floor", green_color),
 };
 //------------------------------------------------------
 void main(int argc, char** argv) {
@@ -91,7 +101,7 @@ void main(int argc, char** argv) {
     init_buffer();
     for (MapTile& map : map1) {
         map.gen_buffer();
-        map.color = glm::vec3(0.0, 1.0, 0.0);
+        
     }
     
     
@@ -271,20 +281,6 @@ GLuint make_shader() {
 }
 
 GLvoid init_buffer() {
-
-    glGenVertexArrays(1, &VAO);
-    glBindVertexArray(VAO);
-
-    glGenBuffers(1, &VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, 0, NULL, GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
-    glEnableVertexAttribArray(0);
-
-    glGenBuffers(1, &EBO);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, 0, NULL, GL_STATIC_DRAW);
 
 
 }

@@ -32,7 +32,7 @@
 aabb make_aabb(const Model m);
 
 
-MapTile::MapTile(float in_x, float in_y, float in_z, const char* m, const char* t) {
+MapTile::MapTile(float in_x, float in_y, float in_z, const char* m, const char* t, glm::vec3 c) {
 	x = in_x;
 	y = in_y;
 	z = in_z;
@@ -42,7 +42,7 @@ MapTile::MapTile(float in_x, float in_y, float in_z, const char* m, const char* 
 
 	trans = glm::mat4(1.0f);
 	trans = glm::translate(trans, glm::vec3(x, y, z));
-
+	color = c;
 
 }
 void MapTile::gen_buffer() {

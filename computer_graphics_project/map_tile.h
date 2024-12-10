@@ -36,7 +36,7 @@ struct MapTile{
 	//-------------------------------------------------
 	
 	MapTile() = default;
-	MapTile(float, float, float, const char*, const char*); // x,y,z좌표, 모델, 해당 물체의 타입
+	MapTile(float, float, float, const char*, const char*, glm::vec3); // x,y,z좌표, 모델, 해당 물체의 타입, 색
 
 	aabb get_aabb(); //aabb박스 얻어오기
 
