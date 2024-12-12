@@ -109,3 +109,20 @@ aabb make_aabb(const Model m) { // aabb를 만들어 주는 함수, 모델에서 x, y, z각각
 	};
 	return temp;
 }
+void MapTile::move_x() {
+
+
+
+};
+
+void MapTile::move_y() {
+
+
+
+};
+
+void MapTile::move_z() {
+
+
+
+};

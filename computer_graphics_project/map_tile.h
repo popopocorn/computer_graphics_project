@@ -42,7 +42,9 @@ struct MapTile{
 
 	void update_position(); // 위치 변환을 위한 업데이트, 프레임마다 호출?
 	void gen_buffer();
-
+	void move_x();
+	void move_y();
+	void move_z();
 	void handle_collision(); // 인자로 플레이어 클래스 받아오기 충돌시 이 함수 호출
 
 };
