@@ -16,6 +16,13 @@ struct MapTile{
 	float max_dy;
 	float max_dz;
 
+	float speed; //발판 이동 속도
+
+
+	float dx; // 실제 변화량
+	float dy;
+	float dz;
+
 	Model model;
 
 	aabb box;

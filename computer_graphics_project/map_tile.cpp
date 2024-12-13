@@ -44,6 +44,11 @@ MapTile::MapTile(float in_x, float in_y, float in_z, const char* m, const char* 
 	trans = glm::translate(trans, glm::vec3(x, y, z));
 	color = c;
 
+	dx = speed;
+	dy = speed;
+	dz = speed;
+
+
 }
 void MapTile::gen_buffer() {
 	glGenVertexArrays(1, &VAO);
@@ -107,22 +112,42 @@ aabb make_aabb(const Model m) { // aabb를 만들어 주는 함수, 모델에서 x, y, z각각
 		min_z,
 		max_z,
 	};
+
 	return temp;
 }
 void MapTile::move_x() {
-
-
+	x += dx;
+	box.min_x += dx;
+	box.max_x += dx;
+	if (x < -max_dx) {
+		dx = -dx;
+	}
+	if (x > max_dx) {
+		dx = -dx;
+	}
 
 };
 
 void MapTile::move_y() {
-
-
-
+	y += dy;
+	box.min_y += dy;
+	box.max_y += dy;
+	if (y < -max_dy) {
+		dy = -dy;
+	}
+	if (y > max_dy) {
+		dy = -dy;
+	}
 };
 
 void MapTile::move_z() {
-
-
-
+	z += dz;
+	box.min_z += dz;
+	box.max_z += dz;
+	if (z < -max_dz) {
+		dz = -dz;
+	}
+	if (z > max_dz) {
+		dz = -dz;
+	}
 };
