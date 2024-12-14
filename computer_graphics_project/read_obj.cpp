@@ -58,5 +58,4 @@ void read_obj_file(const char* filename, Model* model) {
         model->nvectors.push_back(temp_norm[temp_ndx[i].v[2]]);
     }
 
-    
 }

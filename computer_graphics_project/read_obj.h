@@ -18,7 +18,7 @@ typedef struct {
 typedef struct {
 
     std::vector<Vertex> vertices;
-
+    
     std::vector<Normal> nvectors;
 
     

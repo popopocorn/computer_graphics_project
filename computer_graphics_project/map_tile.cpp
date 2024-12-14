@@ -49,6 +49,10 @@ MapTile::MapTile(float in_x, float in_y, float in_z, const char* m, const char* 
 	dz = speed;
 	std::cout << box;
 
+	for (int i = 0; i < model.vertices.size(); ++i) {
+		color_arr.push_back(color);
+	}
+
 }
 void MapTile::gen_buffer() {
 	glGenVertexArrays(1, &VAO);
@@ -63,7 +67,7 @@ void MapTile::gen_buffer() {
 
 	glGenBuffers(1, &NBO);
 	glBindBuffer(GL_ARRAY_BUFFER, NBO);
-	glBufferData(GL_ARRAY_BUFFER, model.nvectors.size() * sizeof(Normal), model.nvectors.data(), GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, color_arr.size() * sizeof(glm::vec3), color_arr.data(), GL_STATIC_DRAW);
 
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(1);
