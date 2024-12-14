@@ -33,21 +33,21 @@ aabb make_aabb(const Model m);
 
 
 MapTile::MapTile(float in_x, float in_y, float in_z, const char* m, const char* t, glm::vec3 c) {
-	x = in_x;
-	y = in_y;
-	z = in_z;
+	init_x = in_x;
+	init_y = in_y;
+	init_z = in_z;
 	read_obj_file(m, &model);
 	type = t;
 	box = make_aabb(model);
 
 	trans = glm::mat4(1.0f);
-	trans = glm::translate(trans, glm::vec3(x, y, z));
+	trans = glm::translate(trans, glm::vec3(init_x + x, init_y + y, init_z + z));
 	color = c;
 
 	dx = speed;
 	dy = speed;
 	dz = speed;
-
+	std::cout << box;
 
 }
 void MapTile::gen_buffer() {
@@ -76,7 +76,7 @@ aabb MapTile::get_aabb() {
 
 void MapTile::update_position() {
 	trans = glm::mat4(1.0f);
-	trans = glm::translate(trans, glm::vec3(x, y, z));
+	trans = glm::translate(trans, glm::vec3(init_x + x, init_y + y, init_z + z));
 }
 void MapTile::handle_collision() {
 	//¹âÀ¸¸é ¶³¾îÁö´Â ÇÔÁ¤ÀÏ½Ã ¶³¾îÆ®¸®±â
@@ -138,6 +138,8 @@ void MapTile::move_y() {
 	if (y > max_dy) {
 		dy = -dy;
 	}
+
+
 };
 
 void MapTile::move_z() {
@@ -150,4 +152,5 @@ void MapTile::move_z() {
 	if (z > max_dz) {
 		dz = -dz;
 	}
+	
 };

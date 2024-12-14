@@ -74,7 +74,23 @@ std::mt19937 g(rd());
 //MapTile(float, float, float, char *, char*);
 
 MapTile map1[] = {
-    MapTile(0.0f, 0.0f, 0.0f, "cube1.obj", "floor", green_color),
+    MapTile(0.0f, 0.0f, 0.0f, "platform.obj", "floor", green_color),//바닥
+    MapTile(0.0f, 0.0f, -4.0f, "platform.obj", "platform_x", red_color),//x축으로 움직이는 발판
+    MapTile(0.0f, 0.0f, -8.0f, "platform.obj", "platform_y", yellow_color),//y축으로 움직이는 발판
+    MapTile(0.0f, 0.0f, -12.0f, "platform.obj", "platform_z", brown_color),//z축으로 움직이는 발판
+    MapTile(0.0f, 0.0f, -16.0f, "platform.obj", "floor", green_color),//바닥
+    MapTile(0.0f, 0.2f, -16.6f, "niddle.obj", "niddle", red_color),//가시
+    MapTile(0.2f, 0.2f, -16.6f, "niddle.obj", "niddle", red_color),//가시
+    MapTile(0.4f, 0.2f, -16.6f, "niddle.obj", "niddle", red_color),//가시
+    MapTile(0.6f, 0.2f, -16.6f, "niddle.obj", "niddle", red_color),//가시
+    MapTile(0.8f, 0.2f, -16.6f, "niddle.obj", "niddle", red_color),//가시
+    MapTile(-0.2f, 0.2f, -14.6f, "niddle.obj", "niddle", red_color),//가시
+    MapTile(-0.4f, 0.2f, -14.6f, "niddle.obj", "niddle", red_color),//가시
+    MapTile(-0.6f, 0.2f, -14.6f, "niddle.obj", "niddle", red_color),//가시
+    MapTile(-0.8f, 0.2f, -14.6f, "niddle.obj", "niddle", red_color),//가시
+    MapTile(0.0f, 0.0f, -20.0f, "platform.obj", "floor", green_color),//바닥
+
+
 };
 //------------------------------------------------------
 void main(int argc, char** argv) {
@@ -146,6 +162,7 @@ GLvoid drawScene(GLvoid) {
     
     for(MapTile w : map1){
         glBindVertexArray(w.VAO);
+        w.update_position();
         glUniform3fv(color, 1, glm::value_ptr(w.color));
         glUniformMatrix4fv(trans_mat, 1, GL_FALSE, glm::value_ptr(w.trans));
         glDrawArrays(GL_TRIANGLES, 0, w.model.vertices.size());
@@ -290,6 +307,19 @@ GLvoid SpecialKeyboard(int key, int x, int y) {
 }
 GLvoid timer(int value) {
 
+    for (MapTile& map : map1) {
+        if (map.type == "platform_x") {
+            map.move_x();
+            
+        }else if (map.type == "platform_y") {
+            map.move_y();
+            
+        }else if (map.type == "platform_z") {
+            map.move_z();
+
+        }
+
+    }
 
     glutPostRedisplay();
     glutTimerFunc(10, timer, 0);
