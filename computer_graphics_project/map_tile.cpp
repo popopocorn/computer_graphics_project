@@ -121,9 +121,11 @@ void MapTile::move_x() {
 	box.max_x += dx;
 	if (x < -max_dx) {
 		dx = -dx;
+		std::cout << box << std::endl;
 	}
 	if (x > max_dx) {
 		dx = -dx;
+		std::cout << box << std::endl;
 	}
 
 };
@@ -134,9 +136,11 @@ void MapTile::move_y() {
 	box.max_y += dy;
 	if (y < -max_dy) {
 		dy = -dy;
+		std::cout << box << std::endl;
 	}
 	if (y > max_dy) {
 		dy = -dy;
+		std::cout << box << std::endl;
 	}
 
 
@@ -148,9 +152,11 @@ void MapTile::move_z() {
 	box.max_z += dz;
 	if (z < -max_dz) {
 		dz = -dz;
+		std::cout << box << std::endl;
 	}
 	if (z > max_dz) {
 		dz = -dz;
+		std::cout << box << std::endl;
 	}
 	
 };
