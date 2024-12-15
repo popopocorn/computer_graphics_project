@@ -5,7 +5,7 @@
 #include<gl/glm/glm.hpp>
 #include<gl/glm/gtc/matrix_transform.hpp>
 #include"file_open.h"
-#include"read_obj.h"
+
 #include"map_tile.h"
 #include"aabb.h";
 #include<string>
@@ -52,6 +52,14 @@ MapTile::MapTile(float in_x, float in_y, float in_z, const char* m, const char* 
 	for (int i = 0; i < model.vertices.size(); ++i) {
 		color_arr.push_back(color);
 	}
+	box.max_x += init_x;
+	box.min_x += init_x;
+
+	box.max_y += init_y;
+	box.min_y += init_y;
+
+	box.max_z += init_z;
+	box.min_z += init_z;
 
 }
 void MapTile::gen_buffer() {
@@ -164,3 +172,9 @@ void MapTile::move_z() {
 	}
 	
 };
+
+void MapTile::drop() {
+	y -= speed;
+
+
+}

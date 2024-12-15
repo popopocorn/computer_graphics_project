@@ -73,6 +73,8 @@ std::random_device(rd);
 std::mt19937 g(rd());
 //MapTile(float, float, float, char *, char*);
 
+
+//¸Ê ¹è¿­
 MapTile map1[] = {
     MapTile(0.0f, 0.0f, 0.0f, "platform.obj", "floor", green_color),//¹Ù´Ú
     MapTile(0.0f, 0.0f, -4.0f, "platform.obj", "platform_x", red_color),//xÃàÀ¸·Î ¿òÁ÷ÀÌ´Â ¹ßÆÇ
@@ -90,8 +92,12 @@ MapTile map1[] = {
     MapTile(-0.8f, 0.2f, -14.6f, "niddle.obj", "niddle", red_color),//°¡½Ã
     MapTile(0.0f, 0.0f, -20.0f, "platform.obj", "floor", green_color),//¹Ù´Ú
 
+    MapTile(0.0f, 0.25f, -20.5f, "cube1.obj", "goal", blue_color),//°ñ
+
 
 };
+
+
 //------------------------------------------------------
 void main(int argc, char** argv) {
     glutInit(&argc, argv);
@@ -140,7 +146,7 @@ GLvoid drawScene(GLvoid) {
 
     glm::mat4 proj2 = glm::perspective(glm::radians(45.0f), 1.0f, 0.1f, 50.0f);
     GLuint projection = glGetUniformLocation(shader_program, "projection");
-    proj2 = glm::translate(proj2, glm::vec3(0.0f, 0.0f, 20.0f));
+    proj2 = glm::translate(proj2, glm::vec3(0.0f, 0.0f, 0.0f));
     glUniformMatrix4fv(projection, 1, GL_FALSE, glm::value_ptr(proj2));
 
 
@@ -152,8 +158,9 @@ GLvoid drawScene(GLvoid) {
     view = glm::lookAt(camera_pos, camera_target, camera_up);
 
 
-    view = glm::translate(view, glm::vec3(camera_x, camera_y, camera_z - 25.0f));
     view = glm::rotate(view, glm::radians(camera_angle), glm::vec3(0.0f, 1.0f, 0.0f));
+    view = glm::translate(view, glm::vec3(camera_x, camera_y, camera_z - 10.0f));
+    
     GLuint view_mat = glGetUniformLocation(shader_program, "view");
     glUniformMatrix4fv(view_mat, 1, GL_FALSE, glm::value_ptr(view));
 

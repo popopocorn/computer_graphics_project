@@ -1,5 +1,5 @@
 #pragma once
-
+#include"read_obj.h"
 #include"aabb.h";
 #include<string>
 
@@ -41,6 +41,7 @@ struct MapTile{
 
 	std::vector<glm::vec3> color_arr;
 
+	
 
 	//-------------------------------------------------
 	// 멤버 함수
@@ -56,6 +57,7 @@ struct MapTile{
 	void move_x();
 	void move_y();
 	void move_z();
+	void drop();
 	void handle_collision(); // 인자로 플레이어 클래스 받아오기 충돌시 이 함수 호출
 
 };
